@@ -39,15 +39,15 @@ services:
     networks:
       - wordpress
 
-  php:
-    build:
-      context: .
-      dockerfile: php.dockerfile
-    container_name: php
-    volumes:
-      - ./wordpress:/var/www/html
-    networks:
-      - wordpress
+  # php:
+  #   build:
+  #     context: .
+  #     dockerfile: php.dockerfile
+  #   container_name: php
+  #   volumes:
+  #     - ./wordpress:/var/www/html
+  #   networks:
+  #     - wordpress
 
   wp:
     build:
