@@ -3,3 +3,4 @@ mysql
 .idea
 php
 data
+nginx/certs
