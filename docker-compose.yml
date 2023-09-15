@@ -11,7 +11,7 @@ services:
     container_name: nginx
     ports:
       - 80:80
-      - 443:443
+      # - 443:443
     volumes:
       - ./wordpress:/var/www/html
     depends_on:
@@ -39,23 +39,23 @@ services:
     networks:
       - wordpress
 
-  # php:
-  #   build:
-  #     context: .
-  #     dockerfile: php.dockerfile
-  #   container_name: php
-  #   volumes:
-  #     - ./wordpress:/var/www/html
-  #   networks:
-  #     - wordpress
-
-  wp:
+  php:
     build:
       context: .
       dockerfile: php.dockerfile
-    container_name: wp
-    entrypoint: ['wp', '--allow-root']
+    container_name: php
     volumes:
       - ./wordpress:/var/www/html
     networks:
       - wordpress
+
+  # wp:
+  #   build:
+  #     context: .
+  #     dockerfile: php.dockerfile
+  #   container_name: wp
+  #   entrypoint: ['wp', '--allow-root']
+  #   volumes:
+  #     - ./wordpress:/var/www/html
+  #   networks:
+  #     - wordpress
