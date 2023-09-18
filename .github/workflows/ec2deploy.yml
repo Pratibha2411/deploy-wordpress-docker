@@ -1,0 +1,27 @@
+name: Build on DockerHub and Deploy to AWS
+on:
+  push:
+    branches:
+      - main
+env:
+  AWS_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set permissions for private key
+      run: |
+        echo "${{ env.AWS_PRIVATE_KEY }}" > key.pem
+        chmod 600 key.pem
+    - name: Stop running container
+      run: |
+        ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@18.118.197.51 'docker-compose down || true'
+        ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@18.118.197.51 'docker-compose up -d --build'
