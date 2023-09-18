@@ -8,7 +8,7 @@ get your WordPress installation added in (or create a new blank one).
 Bringing up the Docker Compose network with `site` instead of just using `up`, ensures that only our site's containers are brought up at the start, instead of all of the command containers as well. The following are built for our web server, with their exposed ports detailed:
 
 - **nginx** - `:80`
-- **mysql** - `:3306`
+- **mysql** - `:3307`
 - **php** - `:9000`
 
 An additional container is included that lets you use the wp-cli app without having to install it on your local machine. Use the following command examples from your project root, modifying them to fit your particular use case.
@@ -27,7 +27,7 @@ volumes:
   - ./mysql:/var/lib/mysql
 ```
 docker-compose up >> compose file
-docker-compose up -d --build >> php.dockerfile
+docker-compose up -d --build 
 docker-compose up -d --build >> docker-compose
 docker-compose run --rm wp user list >>compose it's same as wp user list directoly in contaianer
 to install plugins in container-
