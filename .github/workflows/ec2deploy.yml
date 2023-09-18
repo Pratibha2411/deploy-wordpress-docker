@@ -23,6 +23,6 @@ jobs:
         chmod 600 key.pem
     - name: Stop running container
       run: |
-        ssh-keyscan 18.118.197.51 >> $HOME/.ssh/known_hosts
-        ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@18.118.197.51 'docker-compose down || true'
-        ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@18.118.197.51 'docker-compose up -d --build'
+        # ssh-keyscan 18.118.197.51 >> $HOME/.ssh/known_hosts
+        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i key.pem ubuntu@18.118.197.51 'docker-compose down || true'
+        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i key.pem ubuntu@18.118.197.51 'docker-compose up -d --build'
