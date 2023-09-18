@@ -49,6 +49,7 @@ services:
     networks:
       - wordpress
 
+    #this is to keep data updated
   wp:
     build:
       context: .
